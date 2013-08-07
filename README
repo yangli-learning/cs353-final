@@ -1,0 +1,11 @@
+README
+
+CSC353 Final Project: Yang Li & Janet Guo
+=========================================
+Directory content:
+	createRemote/	Command line application that remotely controls iCreate
+			see createRemote/README for usage
+
+	createVision/	GUI application that controls iCreate with vision
+			(uses createRemoteClient executable in createRemote)
+			see createVision/bin/README for usage	

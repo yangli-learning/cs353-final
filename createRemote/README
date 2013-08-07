@@ -1,0 +1,46 @@
+createRemote:
+
+	createRemoteClient	client executable	
+	createRemoteServer  	server executable
+	lib/  			Create library
+====================================================================
+CSC353 Final Project: Yang Li & Janet Guo
+
+This is the user manual for createRemote, an application that allows 
+users to remotely control iCreate by entering commands.
+
+
+=== use existing executables ===
+1) Running client and server on same machine:
+
+In two different terminals, run the executables in order
+ ./createRemoteServer
+ ./createRemoteClient
+
+2) Running on different machines on a LAN network:
+
+First we need to find out the IP address of the server. 
+On the server machine, type this bash command:
+
+ ifconfig  | grep 'inet addr:'| grep -v '127.0.0.1' |
+ cut -d: -f2 | awk '{ print $1}'
+
+sample output: 
+ 1.229.145.71
+
+Next start the server by calling the server executable:
+ ./createRemoteServer
+
+On the client machine, run the client executable with the server's
+IP address as an argument:
+ ./createRemoteClient <server_IP_addr>
+ 
+
+===compile from source code===
+
+If you have downloaded the source code of this project, to compile
+the executables, type
+ make
+
+This should build executables createRemoteClient and createRemoteServer
+

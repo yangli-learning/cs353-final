@@ -1,0 +1,65 @@
+createVision/bin:
+	createVision		default executable 
+	createVisionNonReactive	non-reactive executable (compiled with
+				MODE = 1 in createVision/src/testApp.h)
+	libs/			openFrameworks library files
+=======================================================================
+CSC353 Final Project: Yang Li and Janet Guo
+
+This is the user manual for using the precompiled executable createVision,
+a server application that plans the motion of iCreate using computer vision. 
+
+The corresponding client application is ../createRemote/createRemoteClient.
+
+The following instruction explains how to use both executables:
+
+
+=== Usage ===
+1) Check whether the webcam is working properly. In Ubuntu, we test webcam 
+using gstreamer:
+ gstreamer-properties
+
+In the popup window, switch to Video tab, and select the appropriate webcam
+name in the Default Input::Divice drop down menu. Then click "Test". This will
+display the current camera view.
+
+2) Make sure the client and the server computer are on a shared network, e.g
+wireless LAN. Find out the IP address of the server. On the server machine, 
+type this bash command:
+ ifconfig  | grep 'inet addr:'| grep -v '127.0.0.1' |
+ cut -d: -f2 | awk '{ print $1}'
+
+Sample output:
+ 1.229.145.71
+
+The client program will use this IP address to initiate connection to the
+ server.
+
+3) Start the server program:
+ ./createVision
+
+A GUI window will pop up and displays the webcam view in two panels.
+
+4) Place the iCreate under the view of the webcam, connect the iCreate USB 
+to the netbook, and turn iCreate on.
+
+5) On the netbook(client computer), go to createRemote/ directory and
+run the client program with the server's IP addresss as an argument.
+ ./createRemoteClient <server_IP_address>
+
+Now the client program receives commands from the server program, and starts
+moving towards the predefined target on the server GUI window.
+
+The robot will stop once it is within a range of the target point.
+Try clicking at other places in the GUI window to make the robot move in
+the specified direction.
+
+6) To stop the application from the GUI, press ESC button. This stops the
+client program as well. Do not disconnect the camera USB while the server
+program is running, since this may cause segmentation faults that may 
+corrupt the webcam files.
+
+
+=== compile from source === 
+If you have downloaded the source code of this project, 
+see createVision/README for how to set up the developing environment.
